@@ -1,70 +1,109 @@
-# Getting Started with Create React App
+<a name="top"></a>
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+# 7. Домашнее задание к лекции «HOC»
 
-## Available Scripts
+[[GithubPages](https://igor-chazov.github.io/ra-hw-7_hoc_1-2-3)]
 
-In the project directory, you can run:
+---
 
-### `npm start`
+**Перейти к:**  
+***[7.2 Популярное и новое](#7.2)  
+[7.3 Агрегация данных*](#7.3)***
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
+---
 
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
+## 7.1 Форматирование даты публикации
 
-### `npm test`
+Есть страница, содержащая список видеозаписей. 
+У каждого блока есть дата публикации. 
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+![Relative Time](./assets/time.png)
 
-### `npm run build`
+В данный момент выводится просто текущее значение (Пример `2017-09-01 14:15:10`). 
+Было вынесено решение изменять представление даты следующим образом в зависимости от его значения:
+`12 минут назад` если прошло меньше часа, `5 часов назад` если прошло больше часа, `X дней назад` если больше суток.
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+## Реализация
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+Используя HOC обернуть `DateTime` в компонент `DateTimePretty`, так, чтобы он преобразовывал дату к нужному виду.
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+Воспользуйтесь готовым файлом `App.js` и стилями `css/index.css` из данного каталога в качестве отправной точки (замените ими те, что создаются в create-react-app).
 
-### `npm run eject`
+Для работы с датой и временем можете воспользоваться библиотекой momentjs.
 
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
+---
 
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+## <a name="7.2">7.2 Популярное и новое</a>
+***[(наверх)](#top)***
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
+### Подсвечивание блоков
 
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
+На нашем сайте есть блоки со статьями и с видео записями. 
 
-## Learn More
+![Highlight](./assets/highlight.png)
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
+Мы решили улучшить отображение наших блоков таким образом, 
+чтобы популярные статьи и видео (1000+ прочтений/просмотров) 
+оборачивались в компонент `Popular`, а с количеством до 
+100 в компонент `New`. Эти компоненты будут менять внешний 
+облик блоков привлекая внимание посетителей.
 
-To learn React, check out the [React documentation](https://reactjs.org/).
+## Реализация
 
-### Code Splitting
+Используя HOC обернуть `Video` и `Article` таким образом, чтобы при отображении в компоненте `List` они помещались внутрь требуемого компонента `Popular` или `New`.
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
+Воспользуйтесь готовым файлом `App.js` и стилями `css/index.css` из данного каталога в качестве отправной точки (замените ими те, что создаются в create-react-app).
 
-### Analyzing the Bundle Size
+---
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
+## <a name="7.3">7.3 Агрегация данных*</a>
+***[(наверх)](#top)***
 
-### Making a Progressive Web App
+### Агрегация данных для таблиц
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
+Есть набор из трех компонентов, которые выводят табличные данные: 
+- с группировкой по месяцам за текущий год, 
+- с группировкой по годам 
+- с сортировкой по убыванию. 
 
-### Advanced Configuration
+![Aggregation](./assets/aggregation.png)
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
+К сожалению, эти компоненты работают только с подготовленными данными, а API сервера статистики возвращает нам «сырые» данные (неотсортированные и несгруппированные).
 
-### Deployment
+Данные запрашиваются один раз (https://raw.githubusercontent.com/netology-code/ra16-homeworks/master/hoc/aggregation/data/data.json) – после загрузки страницы.
+```js
+{
+  "list": [
+    {"date": "2018-01-13", "amount": 10},
+    {"date": "2018-02-13", "amount": 9},
+    {"date": "2018-01-09", "amount": 5},
+    {"date": "2017-12-14", "amount": 14},
+    {"date": "2018-03-01", "amount": 13},
+    //...
+  ]
+}
+```
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
+## Реализация
 
-### `npm run build` fails to minify
+Обернуть компоненты таблиц в HOC, который бы производил над данными операции, приводящие их к нужному виду.
+Так же данные, которые группируются по дате, должны быть отсортированы по ней.
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+Компонент `MonthTable` ожидает данные в свойство `list` в следующем формате 
+```js
+[{month: "Jan", amount: 100}, ...]
+```
+
+Компонент `YearTable` ожидает данные в свойство `list` в следующем формате 
+```js
+[{year: 2018, amount: 100}, ...]
+```
+
+Компонент `SortTable` ожидает данные в свойство `list` в следующем формате 
+```js
+[{date: "2017-12-14", amount: 14}, ...]
+```
+
+Воспользуйтесь готовым файлом `App.js` и стилями `css/index.css` из данного каталога в качестве отправной точки (замените ими те, что создаются в create-react-app).
+
+---

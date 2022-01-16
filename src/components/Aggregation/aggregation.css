@@ -1,0 +1,17 @@
+.aggregation {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  justify-content: space-around;
+  margin-top: 1rem;
+}
+
+table {
+  border-collapse: collapse;
+}
+
+th,
+td {
+  border: 1px solid rgba(69, 115, 152, 0.99);
+  padding: 5px;
+}
