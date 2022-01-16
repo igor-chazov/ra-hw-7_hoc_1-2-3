@@ -1,0 +1,11 @@
+{
+  "short_name": "ra-hw-7_hoc_1-2-3",
+  "name": "ra-hw-7_hoc-1-time-2-highlight-3-aggregation",
+  "icons": [
+    {
+      "src": "favicon.ico",
+      "sizes": "64x64 32x32 24x24 16x16",
+      "type": "image/x-icon"
+    }
+  ]  
+}
