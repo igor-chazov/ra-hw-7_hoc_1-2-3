@@ -2,7 +2,7 @@
 
 # 7. Домашнее задание к лекции «HOC»
 
-[[GithubPages](https://igor-chazov.github.io/ra-hw-7_hoc_1-2-3)]
+[![Build status](https://ci.appveyor.com/api/projects/status/q6xd8pjuwg03y3ul?svg=true)](https://ci.appveyor.com/project/igor-chazov/ra-hw-7-hoc-1-2-3) [[GithubPages](https://igor-chazov.github.io/ra-hw-7_hoc_1-2-3)]
 
 ---
 
